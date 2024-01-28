@@ -1,45 +1,47 @@
-const progress = document.getElementById('progress'); // Fix typo 'porgress' to 'progress'
+const progress = document.getElementById('progress');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const circles = document.querySelectorAll('.circle');
 
-let currentActive = 1;
 
-next.addEventListener('click', () => {
-    currentActive++;
-    if (currentActive > circles.length) {
-        currentActive = circles.length;
+let currentActive = 1
+
+next.addEventListener('click',()=>{
+    currentActive++
+    if (currentActive > circles.length) 
+    {
+        currentActive = circles.length
     }
-    update();
-});
-
-prev.addEventListener('click', () => {
-    currentActive--;
-    if (currentActive < 1) { // Change circles.length to 1
+    updata();
+})
+prev.addEventListener('click',()=>{
+    currentActive--
+    if (currentActive < 1) {
         currentActive = 1;
+        
     }
-    update();
+    updata();
 });
 
-function update() {
-    circles.forEach((circle, index) => {
-        if (index < currentActive) {
+function updata(){
+    circles.forEach((circle,index)=>{
+        if(index < currentActive){
             circle.classList.add("active");
-        } else {
+        }
+        else{
             circle.classList.remove("active");
         }
     });
 
-    const actives = document.querySelectorAll('.active');
+    const actives = document.querySelectorAll('.active')
 
-    progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%';
-
+    progress.style.width = (actives.length -1) /( circles.length -1) * 100 + '%'
     if (currentActive === 1) {
-        prev.disabled = true; // Fix disabled property name
-    } else if (currentActive === circles.length) { // Change circle.length to circles.length
-        next.disabled = true; // Fix disabled property name
-    } else {
-        prev.disabled = false; // Fix disabled property name
-        next.disabled = false; // Fix disabled property name
+        prev.disabled = true
+    }else if(currentActive === circles.length){
+        next.disabled = true
+    }else{
+        prev.disabled =false
+        next.disabled =false
     }
 }
