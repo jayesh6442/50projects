@@ -2,10 +2,7 @@ const progress = document.getElementById('progress');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const circles = document.querySelectorAll('.circle');
-
-
 let currentActive = 1
-
 next.addEventListener('click',()=>{
     currentActive++
     if (currentActive > circles.length) 
@@ -18,11 +15,9 @@ prev.addEventListener('click',()=>{
     currentActive--
     if (currentActive < 1) {
         currentActive = 1;
-        
     }
     updata();
 });
-
 function updata(){
     circles.forEach((circle,index)=>{
         if(index < currentActive){
@@ -32,9 +27,7 @@ function updata(){
             circle.classList.remove("active");
         }
     });
-
     const actives = document.querySelectorAll('.active')
-
     progress.style.width = (actives.length -1) /( circles.length -1) * 100 + '%'
     if (currentActive === 1) {
         prev.disabled = true
